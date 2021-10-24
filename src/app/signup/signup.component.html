@@ -1,0 +1,72 @@
+<section>
+    <div *ngIf="responseMsg" class=" p-3" [ngClass]="responseMsg=='success' ? 'alert-success' : 'alert-danger'">
+        {{responseMsg}}
+    </div>
+    <div class="container pt-4">
+        <div class="title mt-4 mb-4">
+            <h2>Sign Up</h2>
+        </div>
+        <div class="form col-7 m-auto">
+            <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                <div class=" row mb-3">
+                    <div class="col-6">
+                        <input type="text" formControlName="first_name" class="form-control"
+                            [ngClass]="{'is-valid': first_name.valid && (first_name.dirty || first_name.touched) , 'is-invalid': first_name.invalid && (first_name.dirty || first_name.touched)}"
+                            placeholder="First Name">
+                        <div *ngIf="first_name.invalid && (first_name.dirty || first_name.touched)" class="text-danger">
+                            <small *ngIf="first_name.errors?.required">
+                                First Name is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" formControlName="last_name" class="form-control"
+                            [ngClass]="{'is-valid': last_name.valid && (last_name.dirty || last_name.touched) , 'is-invalid': last_name.invalid && (last_name.dirty || last_name.touched)}"
+                            placeholder="Last Name">
+                        <div *ngIf="last_name.invalid && (last_name.dirty || last_name.touched)" class="text-danger">
+                            <small *ngIf="last_name.errors?.required">
+                                Last Name is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="email" formControlName="email" class="form-control" placeholder="email"
+                        [ngClass]="{'is-valid': email.valid && (email.dirty || email.touched) , 'is-invalid': email.invalid && (email.dirty || email.touched)}">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <small *ngIf="email.errors?.required">
+                            Email is required.
+                        </small>
+                        <small *ngIf="email.errors?.email">
+                            Must be e-mail format.
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="number" formControlName="age" class="form-control" placeholder="Age"
+                        [ngClass]="{'is-valid': age.valid && (age.dirty || age.touched) , 'is-invalid': age.invalid && (age.dirty || age.touched)}">
+                    <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-danger">
+                        <small *ngIf="age.errors?.required">
+                            Age is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                        [ngClass]="{'is-valid': password.valid && (password.dirty || password.touched) , 'is-invalid': password.invalid && (password.dirty || password.touched)}">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                        <small *ngIf="password.errors?.required">
+                            Password is required.<br>
+                        </small>
+                        <small *ngIf="password.errors?.minLength?.actualLength < 4 ">
+                            Minimum length is 4 charcters
+                        </small>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" [disabled]="!signUpForm.valid" class="btn btn-primary w-100">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+.note{
+    min-height: 200px;
+    background-color: #fcc;
+}
+.options{
+    position: absolute;
+    top:5px;
+    right: 12px;
+}
+.dropdown-item{
+    cursor: pointer;
+}
